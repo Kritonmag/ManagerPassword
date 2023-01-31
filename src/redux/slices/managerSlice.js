@@ -32,9 +32,15 @@ const managerSlice = createSlice({
         id: action.payload.id
       })
     },
+    removeItem(state, action) {
+      state.data = state.data.filter(item => item.id != action.payload.id)
+    },
+    editItem(state, action) {
+
+    }
   },
 });
 
-export const { addItem } = managerSlice.actions;
+export const { addItem, removeItem, editItem } = managerSlice.actions;
 
 export default managerSlice.reducer
