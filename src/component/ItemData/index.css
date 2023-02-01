@@ -1,0 +1,53 @@
+.area-inform {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.area-login {
+  width: 120px;
+  margin-right: 10px;
+}
+
+.area-password {
+  width: 150px;
+}
+
+.title {
+  margin-bottom: 10px;
+}
+
+.area-btn {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.btn-item:not(:last-child) {
+  margin-right: 10px;
+}
+
+.btn-item {
+  padding: 5px;
+  border-radius: 15px;
+  font-size: 12px;
+  height: 15px;
+  width: 55px;
+  cursor: pointer;
+}
+
+.btn-edit {
+  background-color: rgb(141, 96, 40);
+}
+
+.btn-back {
+  background-color: rgb(141, 96, 40);
+}
+
+.btn-save {
+  background-color: green;
+}
+
+.btn-remove {
+  background-color: red;
+}

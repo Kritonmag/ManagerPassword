@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
-
+import './index.css'
 
 const ListData = ({ setSelecetItem }) => {
   const data = useSelector(state => state.managerPassword.data)
 
-  console.log(data, 'data')
-
   return (
-    <ul>
+    <ul className='site-list'>
       {
         data.map((item) => {
-          return <li key={item.id} onClick={() => setSelecetItem(item)}>{item.site}</li>
+          return <li key={item.id}
+            onClick={() => { setSelecetItem(item) }}
+            className='site-item'>
+            {item.site}
+          </li>
         })
       }
     </ul>

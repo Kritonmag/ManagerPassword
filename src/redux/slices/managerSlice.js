@@ -6,25 +6,24 @@ const managerSlice = createSlice({
     data: [
       {
         site: 'vk',
-        login: 'GenaLoveDota',
+        login: 'Tolya',
         password: 'tron',
-        id: '1'
+        id: 'vk'
       }, {
         site: 'ok',
         login: 'Gena',
         password: 'raes143',
-        id: '2'
+        id: 'ok'
       }, {
         site: 'mail',
         login: 'GaLoota',
-        password: 'kall',
-        id: '3'
+        password: '46479',
+        id: 'mail'
       }
     ]
   },
   reducers: {
     addItem(state, action) {
-
       state.data.push({
         site: action.payload.site,
         login: action.payload.login,
@@ -36,7 +35,16 @@ const managerSlice = createSlice({
       state.data = state.data.filter(item => item.id != action.payload.id)
     },
     editItem(state, action) {
-
+      state.data = state.data.map((item) => {
+        if (item.id == action.payload.id) {
+          return ({
+            ...item,
+            password: action.payload.password
+          })
+        } else {
+          return item
+        }
+      })
     }
   },
 });

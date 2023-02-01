@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { IAddItem } from '../../@type/assets'
 import { addItem } from '../../redux/slices/managerSlice'
+import './index.css'
 
 const AddData: React.FC = () => {
   const [siteValue, setSiteValue] = useState<string>('')
@@ -65,8 +66,7 @@ const AddData: React.FC = () => {
 
   return (
     <>
-      <h3>ADD DATA</h3>
-      <ul>
+      <ul className='add-list'>
         <li>
           <div>site</div>
           <div><input value={siteValue} onChange={onChangeSite} /></div>

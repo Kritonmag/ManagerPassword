@@ -1,0 +1,23 @@
+.site-list {
+  list-style: none;
+  margin: 15px;
+  padding: 0;
+}
+
+.site-item {
+  margin: 5px;
+  padding: 10px;
+  background-color: azure;
+  width: 85px;
+  height: 20px;
+  border-radius: 15px;
+}
+
+.site-item-select {
+  background-color: blue;
+  margin: 5px;
+  padding: 10px;
+  width: 85px;
+  height: 20px;
+  border-radius: 15px;
+}

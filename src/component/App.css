@@ -1,0 +1,9 @@
+.wrapper {
+  width: 550px;
+  height: 750px;
+  background-color: tan;
+}
+
+.area-app {
+  display: flex;
+}
