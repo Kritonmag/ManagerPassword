@@ -47,7 +47,7 @@ const App: React.FC = () => {
 
   return (
     <div className='wrapper'>
-      <h1 className='mainTitle'>manager passwords</h1>
+      <h1 className='mainTitle'>passwords manager</h1>
       <div onClick={() => setAddVisibility(!addVisibility)} className='Add-new-pass-btn'>
         {
           addVisibility === false ? 'Add new passwords' : 'return back'
