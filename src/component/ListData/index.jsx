@@ -9,7 +9,7 @@ const ListData = ({ setSelecetItem }) => {
   useEffect(() => {
     if (isMounted.current) {
       const json = JSON.stringify(data)
-      localStorage.setItem('data', json)
+      localStorage.setItem('data', json) // для чего кладутся данные в localStorage?
     }
     isMounted.current = true
   }, [data])
@@ -23,6 +23,7 @@ const ListData = ({ setSelecetItem }) => {
       {
         data.map((item) => {
           return <li key={item.id}
+           // все, что в onClick лучше выносить в отдельную функцию за пределы return
             onClick={() => { setSelecetItem(item); onChangeSelect(item.id) }}
             className={item.id === selectId ? 'site-item-select' : 'site-item'}>
             {item.site}

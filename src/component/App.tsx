@@ -18,6 +18,8 @@ const App: React.FC = () => {
   const [addVisibility, setAddVisibility] = useState<boolean>(false)
 
   const onRemove = (item: string) => {
+    // использование any часто не рекомендуется из-за потенциальных ошибок, лучше поставить конкретный тип
+    // если переменнтая планирет быть перезаписанной, то стоит использовать let, если нет - const
     let result: any = prompt('write the name of the site')
     if (result.toLowerCase() == item.toLowerCase()) {
       dispach(removeItem(selecetItem))
@@ -50,12 +52,18 @@ const App: React.FC = () => {
       <h1 className='mainTitle'>passwords manager</h1>
       <div onClick={() => setAddVisibility(!addVisibility)} className='Add-new-pass-btn'>
         {
+          {/* addVisibility === false в сравнениии эквивалентно !addVisibility */}
           addVisibility === false ? 'Add new passwords' : 'return back'
         }
       </div>
       <div className='list-and-inform'>
+        {/* addVisibility === false в сравнениии эквивалентно !addVisibility */}
+        {/* лучше заменить на !addVisibility ? setSelecetItem : '' или addVisibility ?  '' : setSelecetItem */}
         <ListData setSelecetItem={addVisibility === false ? setSelecetItem : ''} />
         {
+          {/* тут получилась большая вложенность с тернарным оператором, надо упростить */}
+          {/* selecetItem.site !== '' эквивалентно !selecetItem.site */}
+          {/* запись <></> лучше не использовать */}
           addVisibility === false ?
             selecetItem.site !== '' ?
               <ItemData selecetItem={selecetItem}

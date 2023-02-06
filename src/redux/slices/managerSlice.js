@@ -6,7 +6,10 @@ const managerSlice = createSlice({
     data: JSON.parse(localStorage.getItem('data')) || [],
   },
   reducers: {
+    // тут лучше типизировать payload внутри action, а то TS будет ругаться
     addItem(state, action) {
+      // не обязательно прописывать кадое свойство объекта, если у тебя корректно отправляется payload
+      // можно сделать просто state.data.push({ ...action.payload })
       state.data.push({
         site: action.payload.site,
         login: action.payload.login,
@@ -15,11 +18,11 @@ const managerSlice = createSlice({
       })
     },
     removeItem(state, action) {
-      state.data = state.data.filter(item => item.id != action.payload.id)
+      state.data = state.data.filter(item => item.id != action.payload.id) // вместо != -> !==
     },
     editItem(state, action) {
       state.data = state.data.map((item) => {
-        if (item.id == action.payload.id) {
+        if (item.id == action.payload.id) {  // вместо != -> !==
           return ({
             ...item,
             password: action.payload.password
