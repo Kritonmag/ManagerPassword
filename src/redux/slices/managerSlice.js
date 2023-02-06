@@ -3,24 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const managerSlice = createSlice({
   name: 'managerPassword',
   initialState: {
-    data: [
-      {
-        site: 'vk',
-        login: 'Tolya',
-        password: 'tron',
-        id: 'vk'
-      }, {
-        site: 'ok',
-        login: 'Gena',
-        password: 'raes143',
-        id: 'ok'
-      }, {
-        site: 'mail',
-        login: 'GaLoota',
-        password: '46479',
-        id: 'mail'
-      }
-    ]
+    data: JSON.parse(localStorage.getItem('data')) || [],
   },
   reducers: {
     addItem(state, action) {

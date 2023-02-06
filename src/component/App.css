@@ -1,9 +1,33 @@
+.mainTitle {
+  background-color: #303C6C;
+  padding: 5px;
+  border-radius: 5px;
+  color: #FBE8A6;
+  text-align: center;
+}
+
+.Add-new-pass-btn {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(141, 96, 40);
+  margin: 7px 0;
+  width: 130px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .wrapper {
-  width: 550px;
-  height: 750px;
-  background-color: tan;
+  width: 475px;
+  height: 450px;
+  background-color: #F4976C;
+  padding: 15px;
+  border-radius: 25px;
 }
 
 .area-app {
+  display: flex;
+}
+
+.list-and-inform {
   display: flex;
 }

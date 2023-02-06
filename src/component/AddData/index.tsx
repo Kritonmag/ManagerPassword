@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { IAddItem } from '../../@type/assets'
 import { addItem } from '../../redux/slices/managerSlice'
 import './index.css'
 
-const AddData: React.FC = () => {
+type IAddProps = {
+  setAddVisibility: (itam: boolean) => void
+}
+
+const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
   const [siteValue, setSiteValue] = useState<string>('')
   const [loginValue, setLoginValue] = useState<string>('')
   const [passwordValue, setPasswordValue] = useState<string>('')
@@ -14,10 +18,15 @@ const AddData: React.FC = () => {
     password: '',
     id: ''
   })
-
   const dispatch = useDispatch()
 
   const addNewData = () => {
+    setItem({
+      site: siteValue,
+      login: loginValue,
+      password: passwordValue,
+      id: siteValue
+    })
     if (siteValue.trim().length !== 0 && loginValue.trim().length !== 0 && passwordValue.trim().length !== 0) {
       dispatch(addItem(item))
       setSiteValue('')
@@ -36,50 +45,35 @@ const AddData: React.FC = () => {
 
   const onChangeSite = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSiteValue(event.target.value)
-    setItem({
-      site: siteValue,
-      login: item.login,
-      password: item.password,
-      id: item.site
-    })
+    setItem({ ...item, site: event.target.value, id: event.target.value })
   }
 
   const onChangeLogin = (event: React.ChangeEvent<HTMLInputElement>) => {
     setLoginValue(event.target.value)
-    setItem({
-      site: item.site,
-      login: loginValue,
-      password: item.password,
-      id: item.site
-    })
+    setItem({ ...item, login: event.target.value })
   }
 
   const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event.target.value)
-    setItem({
-      site: item.site,
-      login: item.login,
-      password: passwordValue,
-      id: item.site
-    })
+    setItem({ ...item, password: event.target.value })
   }
 
   return (
     <>
       <ul className='add-list'>
-        <li>
-          <div>site</div>
-          <div><input value={siteValue} onChange={onChangeSite} /></div>
+        <li className='item-add-list'>
+          <div className='title-add-list'>site</div>
+          <div><input className='input-add-list' value={siteValue} onChange={onChangeSite} /></div>
         </li>
-        <li>
-          <div>login</div>
-          <div><input value={loginValue} onChange={onChangeLogin} /></div>
+        <li className='item-add-list'>
+          <div className='title-add-list'>login</div>
+          <div><input className='input-add-list' value={loginValue} onChange={onChangeLogin} /></div>
         </li>
-        <li>
-          <div>password</div>
-          <div><input value={passwordValue} onChange={onChangePassword} /></div>
+        <li className='item-add-list'>
+          <div className='title-add-list'>password</div>
+          <div><input className='input-add-list' value={passwordValue} onChange={onChangePassword} /></div>
         </li>
-        <button onClick={() => { addNewData() }}>ADD ITEM</button>
+        <button className='btn-add-list btn-save' onClick={() => { addNewData(); setAddVisibility(false) }}>ADD ITEM</button>
       </ul>
     </>
   )

@@ -1,3 +1,38 @@
 .add-list {
   list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: 15px;
+  padding: 7px;
+  border-radius: 15px;
+  width: 320px;
+  height: 180px;
+  background-color: #303C6C;
+}
+
+.item-add-list {
+  margin-bottom: 7px;
+  color: #FBE8A6;
+}
+
+.title-add-list {
+  padding-left: 12px;
+  margin-bottom: 3px;
+}
+
+.input-add-list {
+  width: 180px;
+  height: 20px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #FBE8A6;
+}
+
+.btn-add-list {
+  padding: 5px;
+  border-radius: 15px;
+  font-size: 12px;
+  height: 27px;
+  width: 75px;
+  cursor: pointer;
 }
