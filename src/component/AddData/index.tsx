@@ -5,7 +5,7 @@ import { addItem } from '../../redux/slices/managerSlice'
 import './index.css'
 
 type IAddProps = {
-  setAddVisibility: (itam: boolean) => void
+  setAddVisibility: (itam: boolean) => void // опечатка item
 }
 
 const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
@@ -29,6 +29,7 @@ const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
     })
     if (siteValue.trim().length !== 0 && loginValue.trim().length !== 0 && passwordValue.trim().length !== 0) {
       dispatch(addItem(item))
+      // зачем тут отдельно задаются сайт логин и пароль, если в setItem все равно передаются все эти значения?
       setSiteValue('')
       setLoginValue('')
       setPasswordValue('')
@@ -73,6 +74,7 @@ const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
           <div className='title-add-list'>password</div>
           <div><input className='input-add-list' value={passwordValue} onChange={onChangePassword} /></div>
         </li>
+        {/* все внутри onClick вынести в отдельную функцию */}
         <button className='btn-add-list btn-save' onClick={() => { addNewData(); setAddVisibility(false) }}>ADD ITEM</button>
       </ul>
     </>

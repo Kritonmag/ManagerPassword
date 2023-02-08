@@ -11,7 +11,7 @@ type IItemProps = {
 const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePassword }) => {
   const [editVisibility, setEditVisibility] = useState(false)
   const [passwordValue, setPasswordValue] = useState<string>(selecetItem.password)
-  const [passwordVisbility, setPasswordVisbility] = useState<boolean>(false)
+  const [passwordVisbility, setPasswordVisbility] = useState<boolean>(false) // опечатка passwordVisibility
 
   const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event.target.value)
@@ -34,8 +34,10 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
           <div className='title_password'>
             <div className='title'>Password</div>
             {
+              {/* passwordVisbility === false в сравнениии эквивалентно !passwordVisbility */}
               passwordVisbility === false ?
                 <div onClick={() => setPasswordVisbility(!passwordVisbility)} className='visbility-btn unVisbility'>
+                  {/* svg в коде выглядят очень страшно, надо в отдельный файл */}
                   <svg width="26px" height="26px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <title>Iconly/Two-tone/Password</title>
                     <g id="Iconly/Two-tone/Password" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
@@ -62,6 +64,7 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
             }
           </div>
           {
+            {/* editVisibility === false в сравнениии эквивалентно !editVisibility */}
             editVisibility === false ?
               passwordVisbility === false ? <div className='title'>*******</div> : <div className='title'>{selecetItem.password}</div> :
               <input value={passwordValue}
@@ -75,6 +78,7 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
         {
           editVisibility === false ?
             <li className='btn-item btn-edit' onClick={() => { setEditVisibility(!editVisibility) }}>EDIT</li> :
+            // такой большой onClick обязательно вынести в отдельную функцию
             <li className='btn-item btn-save' onClick={() => {
               setPasswordVisbility(false);
               setEditVisibility(false);
@@ -85,6 +89,7 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
         {
           editVisibility === false ?
             <li className='btn-item btn-remove' onClick={() => onRemove(selecetItem.site)}>REMOVE</li> :
+            // вынести onClick
             <li className='btn-item btn-back' onClick={() => { setEditVisibility(false); setPasswordValue('') }}>BACK</li>
         }
       </ul>
