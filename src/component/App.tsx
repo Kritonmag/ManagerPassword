@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editItem, removeItem } from '../redux/slices/managerSlice';
 import { IAddItem } from '../@type/assets'
 import AddData from './AddData';
@@ -18,8 +18,8 @@ const App: React.FC = () => {
   const [addVisibility, setAddVisibility] = useState<boolean>(false)
 
   const onRemove = (item: string) => {
-    let result: any = prompt('write the name of the site')
-    if (result.toLowerCase() == item.toLowerCase()) {
+    const result: any = prompt('write the name of the site')
+    if (result.toLowerCase() === item.toLowerCase()) {
       dispach(removeItem(selecetItem))
     } else {
       alert('error')
@@ -33,7 +33,7 @@ const App: React.FC = () => {
   }
 
   const onChangePassword = (newPassword: string) => {
-    if (newPassword == '') {
+    if (newPassword === '') {
       alert('error')
     } else {
       let newItem = {
@@ -50,18 +50,18 @@ const App: React.FC = () => {
       <h1 className='mainTitle'>passwords manager</h1>
       <div onClick={() => setAddVisibility(!addVisibility)} className='Add-new-pass-btn'>
         {
-          addVisibility === false ? 'Add new passwords' : 'return back'
+          !addVisibility ? 'Add new passwords' : 'return back'
         }
       </div>
       <div className='list-and-inform'>
-        <ListData setSelecetItem={addVisibility === false ? setSelecetItem : ''} />
+        <ListData setSelecetItem={!addVisibility ? setSelecetItem : ''} />
         {
-          addVisibility === false ?
+          !addVisibility ?
             selecetItem.site !== '' ?
               <ItemData selecetItem={selecetItem}
                 onRemove={onRemove}
                 onChangePassword={onChangePassword} /> :
-              <></> :
+              null :
             <AddData setAddVisibility={setAddVisibility} />
         }
       </div>

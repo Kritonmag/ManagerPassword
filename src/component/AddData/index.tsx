@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { IAddItem } from '../../@type/assets'
 import { addItem } from '../../redux/slices/managerSlice'
 import './index.css'
 
 type IAddProps = {
-  setAddVisibility: (itam: boolean) => void
+  setAddVisibility: (item: boolean) => void
 }
 
 const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
@@ -58,6 +58,11 @@ const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
     setItem({ ...item, password: event.target.value })
   }
 
+  const onAddItem = () => {
+    addNewData()
+    setAddVisibility(false)
+  }
+
   return (
     <>
       <ul className='add-list'>
@@ -73,7 +78,7 @@ const AddData: React.FC<IAddProps> = ({ setAddVisibility }) => {
           <div className='title-add-list'>password</div>
           <div><input className='input-add-list' value={passwordValue} onChange={onChangePassword} /></div>
         </li>
-        <button className='btn-add-list btn-save' onClick={() => { addNewData(); setAddVisibility(false) }}>ADD ITEM</button>
+        <button className='btn-add-list btn-save' onClick={() => onAddItem()}>ADD ITEM</button>
       </ul>
     </>
   )

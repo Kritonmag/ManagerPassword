@@ -7,19 +7,14 @@ const managerSlice = createSlice({
   },
   reducers: {
     addItem(state, action) {
-      state.data.push({
-        site: action.payload.site,
-        login: action.payload.login,
-        password: action.payload.password,
-        id: action.payload.id
-      })
+      state.data.push({ ...action.payload })
     },
     removeItem(state, action) {
-      state.data = state.data.filter(item => item.id != action.payload.id)
+      state.data = state.data.filter(item => item.id !== action.payload.id)
     },
     editItem(state, action) {
       state.data = state.data.map((item) => {
-        if (item.id == action.payload.id) {
+        if (item.id === action.payload.id) {
           return ({
             ...item,
             password: action.payload.password

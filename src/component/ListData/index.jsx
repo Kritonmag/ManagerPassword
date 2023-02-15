@@ -18,12 +18,17 @@ const ListData = ({ setSelecetItem }) => {
     setSelectId(id)
   }
 
+  const onClickItem = (item) => {
+    setSelecetItem(item);
+    onChangeSelect(item.id)
+  }
+
   return (
     <ul className='site-list'>
       {
         data.map((item) => {
           return <li key={item.id}
-            onClick={() => { setSelecetItem(item); onChangeSelect(item.id) }}
+            onClick={() => { onClickItem(item) }}
             className={item.id === selectId ? 'site-item-select' : 'site-item'}>
             {item.site}
           </li>

@@ -11,16 +11,23 @@ type IItemProps = {
 const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePassword }) => {
   const [editVisibility, setEditVisibility] = useState(false)
   const [passwordValue, setPasswordValue] = useState<string>(selecetItem.password)
-  const [passwordVisbility, setPasswordVisbility] = useState<boolean>(false)
+  const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false)
 
   const onChangeValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event.target.value)
   }
 
+  const onBtnSave = () => {
+    setPasswordVisibility(false);
+    setEditVisibility(false);
+    onChangePassword(passwordValue)
+    setPasswordValue('');
+  }
+
   useEffect(() => {
     setEditVisibility(false);
     setPasswordValue('');
-    setPasswordVisbility(false)
+    setPasswordVisibility(false)
   }, [selecetItem])
 
   return (
@@ -34,8 +41,8 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
           <div className='title_password'>
             <div className='title'>Password</div>
             {
-              passwordVisbility === false ?
-                <div onClick={() => setPasswordVisbility(!passwordVisbility)} className='visbility-btn unVisbility'>
+              !passwordVisibility === false ?
+                <div onClick={() => setPasswordVisibility(!passwordVisibility)} className='visbility-btn unVisbility'>
                   <svg width="26px" height="26px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <title>Iconly/Two-tone/Password</title>
                     <g id="Iconly/Two-tone/Password" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
@@ -48,7 +55,7 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
                     </g>
                   </svg>
                 </div> :
-                <div onClick={() => setPasswordVisbility(!passwordVisbility)} className='visbility-btn visbility'>
+                <div onClick={() => setPasswordVisibility(!passwordVisibility)} className='visbility-btn visbility'>
                   <svg width="26px" height="26px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <title>Iconly/Bulk/Password</title>
                     <g id="Iconly/Bulk/Password" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
@@ -62,8 +69,8 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
             }
           </div>
           {
-            editVisibility === false ?
-              passwordVisbility === false ? <div className='title'>*******</div> : <div className='title'>{selecetItem.password}</div> :
+            !editVisibility ?
+              !passwordVisibility ? <div className='title'>*******</div> : <div className='title'>{selecetItem.password}</div> :
               <input value={passwordValue}
                 className='input-password'
                 onChange={onChangeValue}
@@ -75,12 +82,7 @@ const ItemData: React.FC<IItemProps> = ({ selecetItem, onRemove, onChangePasswor
         {
           editVisibility === false ?
             <li className='btn-item btn-edit' onClick={() => { setEditVisibility(!editVisibility) }}>EDIT</li> :
-            <li className='btn-item btn-save' onClick={() => {
-              setPasswordVisbility(false);
-              setEditVisibility(false);
-              onChangePassword(passwordValue)
-              setPasswordValue('');
-            }}>SAVE</li>
+            <li className='btn-item btn-save' onClick={() => { onBtnSave() }}>SAVE</li>
         }
         {
           editVisibility === false ?
